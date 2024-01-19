@@ -2,6 +2,7 @@ package pageObject;
 
 import com.codeborne.selenide.SelenideElement;
 import pageObject.components.CalendarComponent;
+import pageObject.components.CheckResultComponent;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Condition.text;
@@ -27,6 +28,7 @@ public class RegistrationPage {
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    CheckResultComponent resultComponent = new CheckResultComponent();
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -124,8 +126,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent()
-                .shouldHave(text(value));
+        resultComponent.checkRegistrationResults(key, value);
 
         return this;
     }
